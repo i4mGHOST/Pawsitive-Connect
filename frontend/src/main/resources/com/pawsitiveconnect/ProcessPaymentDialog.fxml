@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefWidth="460.0" spacing="15.0" styleClass="payment-modal-card" stylesheets="@global-theme.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawsitiveconnect.ProcessPaymentController">
+    <padding>
+        <Insets bottom="22.0" left="26.0" right="26.0" top="22.0" />
+    </padding>
+
+    <!-- Modal Header -->
+    <VBox spacing="4.0">
+        <HBox alignment="CENTER_LEFT" spacing="6.0">
+            <Label styleClass="pill-green" text="💳 Payment Settlement" />
+            <Label styleClass="text-card-muted" text="• Secure Gateway" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleDismissDialog" style="-fx-background-color: transparent; -fx-text-fill: #6E7968; -fx-font-weight: bold; -fx-cursor: hand;" text="✕" />
+        </HBox>
+        <Label fx:id="dialogTitleLabel" styleClass="text-main-title" style="-fx-font-size: 21px;" text="Process Pending Payment" />
+        <Label fx:id="applicationDetailsLabel" styleClass="text-card-muted" text="Select a pending transaction below" />
+    </VBox>
+
+    <!-- Pending Transactions Dropdown (Shown in Admin Ledger Mode) -->
+    <VBox fx:id="pendingSelectBox" spacing="4.0">
+        <Label style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #4A5243;" text="SELECT PENDING TRANSACTION *" />
+        <ComboBox fx:id="pendingTxnCombo" maxWidth="Infinity" prefHeight="40.0" promptText="Loading pending transactions..." />
+    </VBox>
+
+    <!-- Summary Box -->
+    <VBox spacing="4.0" style="-fx-background-color: #eef6e4; -fx-background-radius: 14px; -fx-padding: 12px 16px;">
+        <Label styleClass="text-card-muted" text="CURRENTLY PROCESSING PAYER &amp; FIXED AMOUNT" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <Label fx:id="summaryCategoryLabel" styleClass="text-item-title" text="Pending Settlement" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="summaryAmountLabel" style="-fx-font-weight: 800; -fx-font-size: 18px; -fx-text-fill: #2c694e;" text="₹0.00" />
+        </HBox>
+    </VBox>
+
+    <!-- Input Form -->
+    <VBox spacing="12.0">
+        <!-- Payer Name -->
+        <VBox spacing="4.0">
+            <Label style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #4A5243;" text="PROCESSING PAYMENT FOR (PAYER) *" />
+            <TextField fx:id="payerNameField" editable="false" prefHeight="40.0" promptText="e.g. Aarav Sharma" styleClass="form-input" />
+        </VBox>
+
+        <!-- Fixed Amount & Payment Mode Row -->
+        <HBox spacing="10.0">
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #4A5243;" text="FIXED AMOUNT (₹)" />
+                <TextField fx:id="amountField" editable="false" prefHeight="40.0" promptText="0.00" styleClass="form-input" />
+            </VBox>
+
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #4A5243;" text="PAYMENT MODE *" />
+                <ComboBox fx:id="paymentMethodCombo" maxWidth="Infinity" prefHeight="40.0" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Status Message -->
+    <Label fx:id="statusLabel" wrapText="true">
+        <font><Font size="12.0" /></font>
+    </Label>
+
+    <!-- Dialog Actions -->
+    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+        <Button fx:id="cancelPaymentBtn" onAction="#handleCancel" styleClass="secondary-action-button" text="Cancel Payment" />
+        <Button fx:id="payNowBtn" onAction="#handleProcessPayment" styleClass="primary-button" text="Pay Now" />
+    </HBox>
+</VBox>

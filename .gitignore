@@ -1,0 +1,17 @@
+# Node.js backend dependencies & secrets
+backend/node_modules/
+backend/.env
+
+# Java & Maven build outputs
+frontend/target/
+out/
+*.class
+*.jar
+
+# IntelliJ IDEA IDE metadata
+.idea/
+*.iml
+
+# Operating system junk
+.DS_Store
+Thumbs.db
